@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>web_scraping</title>
+
+
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+
+kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb
+}
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+  body {
+    padding: 2cm; 
+  }
+}
+</style>
+
+<style type="text/css">
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: black;
+	background: none;
+	text-shadow: 0 1px white;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #f5f2f0;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #999;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color: #a67f59;
+	background: hsla(0, 0%, 100%, .5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: #07a;
+}
+
+.token.function {
+	color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+	color: #e90;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+</style>
+
+<style type="text/css">
+pre.line-numbers {
+	position: relative;
+	padding-left: 3.8em;
+	counter-reset: linenumber;
+}
+
+pre.line-numbers > code {
+	position: relative;
+}
+
+.line-numbers .line-numbers-rows {
+	position: absolute;
+	pointer-events: none;
+	top: 0;
+	font-size: 100%;
+	left: -3.8em;
+	width: 3em; /* works for line-numbers below 1000 lines */
+	letter-spacing: -1px;
+	border-right: 1px solid #999;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+}
+
+	.line-numbers-rows > span {
+		pointer-events: none;
+		display: block;
+		counter-increment: linenumber;
+	}
+
+		.line-numbers-rows > span:before {
+			content: counter(linenumber);
+			color: #999;
+			display: block;
+			padding-right: 0.8em;
+			text-align: right;
+		}
+</style>
+
+<style type="text/css">
+div.prism-show-language {
+	position: relative;
+}
+
+div.prism-show-language > div.prism-show-language-label {
+	color: black;
+	background-color: #CFCFCF;
+	display: inline-block;
+	position: absolute;
+	bottom: auto;
+	left: auto;
+	top: 0;
+	right: 0;
+	width: auto;
+	height: auto;
+	font-size: 0.9em;
+	border-radius: 0 0 0 5px;
+	padding: 0 0.5em;
+	text-shadow: none;
+	z-index: 1;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	-webkit-transform: none;
+	-moz-transform: none;
+	-ms-transform: none;
+	-o-transform: none;
+	transform: none;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<h1 id="toc_0">Web Scraping</h1>
+
+<h2 id="toc_1">Introduction</h2>
+
+<p>Collecting data from websites using an automated process is known as web scraping. That means parsing HTML documents, processing textual data using string methods and regular expressions, interacting with forms and other dynamic/reactive website components (eg. buttons).</p>
+
+<p>Most of the websites out there allow users scraping their data, but some do not. The reasons for forbidding may be related to intellectual property or resources demand: (automated) scraping by software scales-up very quickly and that may cause servers to overload on requests.</p>
+
+<h3 id="toc_2">Goals</h3>
+
+<p>Generally speaking, web scraping is used to collect data from web services (websites, platforms) that otherwise do NOT provide another way to programmatically access their content, such as APIs or data files; All they offer are their webpages. </p>
+
+<p>The reasons for NOT providing means (eg, API) to access their data vary, including:</p>
+
+<ul>
+<li>Copyright and privacy concerns: again, be sure to respect a website’s Terms of Service.</li>
+<li>Technical limitations: related to costs of implementation and maintenance.</li>
+<li>Design choices: depending on data complexity and expected demand.</li>
+</ul>
+
+<p>Since most of the websites do NOT provide interfaces but their web pages, web scraping is used for a variety of purposes, including:</p>
+
+<ul>
+<li>To collect data from different websites for aggregation (eg, news aggregators)</li>
+<li>To compile an structured data set from unstructured web data (aka, data mining)</li>
+<li>To do sentiment analysis from social networks</li>
+</ul>
+
+<h3 id="toc_3">Types of websites</h3>
+
+<p>There are two main types of websites:</p>
+
+<ul>
+<li>Static websites: These websites have fixed content that is displayed the same way for every user. They are built using simple HTML, CSS, and some JavaScript for styling. Static websites are relatively easier to scrape because the data is readily available in the source code.</li>
+<li>Dynamic websites: These websites use server-side scripting and client-side scripting (like AJAX or React) to generate and display content. They often load data asynchronously and update without requiring a page refresh. Dynamic websites are more challenging to scrape because the data is not immediately available in the source code.</li>
+</ul>
+
+<h3 id="toc_4">Legal and ethical considerations</h3>
+
+<p>Web scraping can raise legal and ethical concerns, such as:</p>
+
+<ul>
+<li>Copyright infringement: scraping copyrighted content without permission may lead to legal issues.</li>
+<li>Terms of Service (ToS) violations: Some websites explicitly forbid web scraping in their ToS.</li>
+<li>Privacy concerns: Scraping personal data without consent can lead to privacy violations.</li>
+</ul>
+
+<p>Always ensure that you have permission to scrape a website and respect the site&#39;s <strong><code>robots.txt</code></strong>
+ file, which contains rules about web crawlers and scrapers.</p>
+
+<h2 id="toc_5">Tutorials and Exercises</h2>
+
+<p>After the lesson (in the following sections), go through the following (fairly short) tutorials, and the exercises below.</p>
+
+<p><strong>Follow the following tutorials:</strong></p>
+
+<ul>
+<li>Scrapy: <a href="https://docs.scrapy.org/en/latest/intro/tutorial.html">https://docs.scrapy.org/en/latest/intro/tutorial.html</a></li>
+<li>BeautifulSoup4: <a href="https://beautiful-soup-4.readthedocs.io/en/latest/#quick-start">https://beautiful-soup-4.readthedocs.io/en/latest/#quick-start</a></li>
+<li>Selenium: <a href="https://www.selenium.dev/documentation/webdriver/getting_started/first_script/">https://www.selenium.dev/documentation/webdriver/getting<em>started/first</em>script/</a></li>
+</ul>
+
+<p><strong><em>Then</em>, choose one of those approaches to scrape the following data:</strong></p>
+
+<blockquote>
+<p>In the following exercises, the idea is to <em>parse</em> the respective web pages/sites to get the requested information. This process is meant to result in structured data sets, represented as data-frames or dictionaries, for instance.</p>
+</blockquote>
+
+<ol>
+<li><p><strong>Scrape this document:</strong> extract the <em>Table of Contents</em> (sections and sub-sections), either by parsing the generated HTML or the original Markdown.</p></li>
+<li><p><strong>Scrape <code>example_create.html</code>:</strong> recover the tables (<code>Students</code>, <code>Courses</code>, and <code>Enrollments</code>) <em>and</em> the (SQL) code blocks from Week-05 <code>example_create.html</code> file.</p>
+
+<ul>
+<li>Students:</li>
+</ul>
+
+<table>
+<thead><tr>
+<th>student_id</th>
+<th>name</th>
+<th>age</th>
+<th>gender</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>John Doe</td>
+<td>20</td>
+<td>Male</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Jane Smith</td>
+<td>22</td>
+<td>Female</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Bob Green</td>
+<td>21</td>
+<td>Male</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Lisa Brown</td>
+<td>19</td>
+<td>Female</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Tom Lee</td>
+<td>23</td>
+<td>Male</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Courses:</li>
+</ul>
+<table>
+<thead><tr>
+<th>course_id</th>
+<th>name</th>
+<th>instructor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>English 101</td>
+<td>Mr. Smith</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Math 101</td>
+<td>Ms. Johnson</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Science 101</td>
+<td>Dr. Green</td>
+</tr>
+<tr>
+<td>4</td>
+<td>History 101</td>
+<td>Ms. Brown</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Enrollments:</li>
+</ul>
+<table>
+<thead><tr>
+<th>enrollment_id</th>
+<th>student_id</th>
+<th>course_id</th>
+<th>grade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>A</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>B</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td>3</td>
+<td>A</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2</td>
+<td>1</td>
+<td>B</td>
+</tr>
+<tr>
+<td>5</td>
+<td>2</td>
+<td>2</td>
+<td>A</td>
+</tr>
+<tr>
+<td>6</td>
+<td>2</td>
+<td>4</td>
+<td>C</td>
+</tr>
+<tr>
+<td>7</td>
+<td>3</td>
+<td>2</td>
+<td>A</td>
+</tr>
+<tr>
+<td>8</td>
+<td>3</td>
+<td>3</td>
+<td>A</td>
+</tr>
+<tr>
+<td>9</td>
+<td>4</td>
+<td>1</td>
+<td>C</td>
+</tr>
+<tr>
+<td>10</td>
+<td>4</td>
+<td>3</td>
+<td>B</td>
+</tr>
+<tr>
+<td>11</td>
+<td>5</td>
+<td>2</td>
+<td>A</td>
+</tr>
+<tr>
+<td>12</td>
+<td>5</td>
+<td>4</td>
+<td>D</td>
+</tr>
+</tbody>
+</table></li>
+<li><p><strong>The *list of PEPs:</strong>* from the official website <a href="https://peps.python.org/">https://peps.python.org/</a></p>
+
+<p>The page presents the PEPs across multiple tables and sections. Make sure to understand the conceptual structure of the information, and then the (HTML) code structure. Here is that page&#39;s ToC:</p>
+
+<div><pre class="line-numbers"><code class="language-none">Contents
+-  Introduction
+-  Topics
+-  Index by Category
+  -  Meta-PEPs (PEPs about PEPs or Processes)
+  -  Other Informational PEPs
+  -  Provisional PEPs (provisionally accepted; interface may still change)
+  -  Accepted PEPs (accepted; may not be implemented yet)
+  -  Open PEPs (under consideration)
+  -  Finished PEPs (done, with a stable interface)
+  -  Historical Meta-PEPs and Informational PEPs
+  -  Deferred PEPs (postponed pending further research or updates)
+  -  Abandoned, Withdrawn, and Rejected PEPs
+*  Numerical Index
+*  Reserved PEP Numbers
+*  PEP Types Key
+*  PEP Status Key
+*  Authors/Owners</code></pre></div>
+
+<p>Start by recoverying the tables from sections marked with <code>*</code>, they seem to contain the complete list of PEPs and the accompanying attributes (columns) metadata. The same list of PEPs (from <code>Numerical Index</code>) is presented in section <code>Index by Category</code>, which is an important information about those PEPs (<em>i.e.</em>, the <em>categories</em>) and it would be nice to have them too.</p></li>
+</ol>
+
+<h2 id="toc_6">HTML</h2>
+
+<p>When web scraping, it&#39;s essential to understand the structure of HTML (Hypertext Markup Language) as it forms the backbone of web content. HTML is used to create and structure the content of a web page, including text, images, and links.</p>
+
+<p>In the context of web scraping, you need to know how HTML is structured and how to navigate through the elements to extract the desired information.</p>
+
+<p>Here are the key HTML concepts you should be familiar with for web scraping:</p>
+
+<ol>
+<li><strong>Elements and Tags</strong>: HTML elements are the building blocks of a web page. They are defined using opening and closing tags, e.g., <strong><code>&lt;p&gt;</code></strong> and <strong><code>&lt;/p&gt;</code></strong> for paragraphs. Some elements, like images (<strong><code>&lt;img&gt;</code></strong>), don&#39;t have closing tags.</li>
+<li><strong>Attributes</strong>: Attributes are additional information that can be included within an opening tag, such as <strong><code>class</code></strong>, <strong><code>id</code></strong>, or <strong><code>href</code></strong>. Attributes are useful for targeting specific elements during web scraping. For example, <strong><code>&lt;a href=&quot;https://example.com&quot;&gt;Link&lt;/a&gt;</code></strong> has an <strong><code>href</code></strong> attribute containing a URL.</li>
+<li><p><strong>Nested Elements</strong>: HTML elements can be nested within one another, creating a hierarchical structure. For example:</p>
+
+<div><pre class="line-numbers"><code class="language-markup">&lt;div&gt;
+    &lt;p&gt;Paragraph 1&lt;/p&gt;
+    &lt;p&gt;Paragraph 2&lt;/p&gt;
+&lt;/div&gt;
+</code></pre></div></li>
+<li><p><strong>HTML Tree</strong>: An HTML document can be represented as a tree structure, where elements are nodes and nesting creates parent-child relationships. This tree structure is called the Document Object Model (DOM).</p></li>
+<li><p><strong>Selectors</strong>: Selectors are used to target specific elements within an HTML document. There are different types of selectors, including:</p>
+
+<ul>
+<li><strong>Tag selectors</strong>: Target elements based on their tag name, e.g., <strong><code>p</code></strong> for paragraphs.</li>
+<li><strong>Class selectors</strong>: Target elements with a specific class attribute, e.g., <strong><code>.example-class</code></strong>.</li>
+<li><strong>ID selectors</strong>: Target elements with a specific id attribute, e.g., <strong><code>#example-id</code></strong>.</li>
+<li><strong>Attribute selectors</strong>: Target elements based on their attributes, e.g., <strong><code>[href]</code></strong> for elements with an <strong><code>href</code></strong> attribute.</li>
+</ul></li>
+</ol>
+
+<p>Understanding these HTML concepts will enable you to effectively navigate and extract data from web pages using web scraping tools like BeautifulSoup4 or Scrapy. To improve your HTML knowledge, consider inspecting the source code of various web pages and practice using different selectors to target and extract specific elements.</p>
+
+<p>To know the HTML structure of the web page(s) you are going to scrape, you can <em>inspect the source code</em> of the page(s) through your web-browser (right-click on the page and select “View page source”, “Inspect”, or similar tool depending on your browser).</p>
+
+<h2 id="toc_7"><code>robots.txt</code></h2>
+
+<p>To check a website&#39;s <strong><code>robots.txt</code></strong> file, simply add <strong><code>/robots.txt</code></strong> to the base URL of the website you&#39;re interested in. The <strong><code>robots.txt</code></strong> file contains rules and guidelines for web crawlers and scrapers, which are usually intended for search engine bots but should be respected by any automated tool.</p>
+
+<p>For example, if you want to check the <strong><code>robots.txt</code></strong> file for the website &quot;<strong><a href="https://www.example.com/">https://www.example.com</a></strong>&quot;, you would visit the following URL: <code>https://www.example.com/robots.txt</code>. </p>
+
+<p>The <strong><code>robots.txt</code></strong> file may include rules such as <strong><code>Disallow</code></strong> or <strong><code>Allow</code></strong> directives, which specify the sections of the website that are off-limits or explicitly allowed for web crawlers and scrapers. The rules are usually grouped by user-agent, which identifies a specific crawler or scraper.</p>
+
+<p>Here&#39;s an example of a simple <strong><code>robots.txt</code></strong> file:</p>
+
+<div><pre class="line-numbers"><code class="language-none">User-agent: *
+Disallow: /private/
+Disallow: /cgi-bin/
+
+User-agent: Googlebot
+Allow: /public/
+Disallow: /admin/</code></pre></div>
+
+<p>In this example, the first group of rules (with <strong><code>User-agent: *</code></strong>) applies to all crawlers and scrapers, disallowing access to the <strong><code>/private/</code></strong> and <strong><code>/cgi-bin/</code></strong> sections of the website. The second group of rules (with <strong><code>User-agent: Googlebot</code></strong>) applies specifically to Googlebot, allowing access to the <strong><code>/public/</code></strong> section but disallowing the <strong><code>/admin/</code></strong> section.</p>
+
+<h3 id="toc_8">GitHub’ <code>robots.txt</code></h3>
+
+<p>To check the <strong><code>robots.txt</code></strong> file for GitHub, visit the following URL in your web browser:</p>
+
+<div><pre class="line-numbers"><code class="language-jsx">https://github.com/robots.txt</code></pre></div>
+
+<p>As of March 2023, this is how GitHub’s <code>robots.txt</code> looks like:</p>
+
+<div><pre class="line-numbers"><code class="language-none"># If you would like to crawl GitHub contact us via https://support.github.com?tags=dotcom-robots
+# We also provide an extensive API: https://docs.github.com
+User-agent: baidu
+crawl-delay: 1
+
+User-agent: *
+
+Disallow: /*/pulse
+Disallow: /*/tree/
+Disallow: /gist/
+Disallow: /*/forks
+Disallow: /*/stars
+Disallow: /*/download
+Disallow: /*/revisions
+Disallow: /*/issues/new
+Disallow: /*/issues/search
+Disallow: /*/commits/
+Disallow: /*/commits/*?author
+Disallow: /*/commits/*?path
+Disallow: /*/branches
+Disallow: /*/tags
+Disallow: /*/contributors
+Disallow: /*/comments
+Disallow: /*/stargazers
+Disallow: /*/archive/
+Disallow: /*/blame/
+Disallow: /*/watchers
+Disallow: /*/network
+Disallow: /*/graphs
+Disallow: /*/raw/
+Disallow: /*/compare/
+Disallow: /*/cache/
+Disallow: /.git/
+Disallow: */.git/
+Disallow: /*.git$
+Disallow: /search/advanced
+Disallow: /search
+Disallow: */search
+Disallow: /*q=
+Disallow: /*.atom$
+
+Disallow: /ekansa/Open-Context-Data
+Disallow: /ekansa/opencontext-*
+Disallow: */tarball/
+Disallow: */zipball/
+
+Disallow: /*source=*
+Disallow: /*ref_cta=*
+Disallow: /*plan=*
+Disallow: /*return_to=*
+Disallow: /*ref_loc=*
+Disallow: /*setup_organization=*
+Disallow: /*source_repo=*
+Disallow: /*ref_page=*
+Disallow: /*source=*
+Disallow: /*referrer=*
+Disallow: /*report=*
+Disallow: /*author=*
+Disallow: /*since=*
+Disallow: /*until=*
+Disallow: /*commits?author=*
+Disallow: /*report-abuse?report=*
+Disallow: /*tab=*
+Allow: /*?tab=achievements&amp;achievement=*
+
+Disallow: /account-login
+Disallow: /Explodingstuff/</code></pre></div>
+
+<p>This <strong><code>robots.txt</code></strong> file contains various rules for web crawlers and scrapers. The line <strong><code>User-agent: *</code></strong>, indicates that the following rules apply to all crawlers and scrapers. The <code>**Allow**</code> and <strong><code>Disallow</code></strong> directives specify the sections of the website that are allowed or disallowed for web crawlers and scrapers.</p>
+
+<h1 id="toc_9">Python tools and examples</h1>
+
+<p>BeautifulSoup, Selenium, and Scrapy are popular Python libraries used for web scraping, each with its unique features and use cases.</p>
+
+<h2 id="toc_10">BeautifulSoup4</h2>
+
+<p><a href="https://beautiful-soup-4.readthedocs.io/">BeautifulSoup</a> is a Python library used for parsing and navigating HTML and XML documents. It creates a parse tree from a web page&#39;s source code and provides methods to search, modify, and navigate the tree. BeautifulSoup is commonly used in combination with the <strong><code>[requests](https://docs.python-requests.org/)</code></strong> library to download web pages and extract data from their HTML content. BeautifulSoup is best suited for simple web scraping tasks or static websites that do not rely heavily on JavaScript for loading content.</p>
+
+<p>Key features:</p>
+
+<ul>
+<li>Easy to learn and use.</li>
+<li>Flexible and powerful for parsing <a href="https://en.wikipedia.org/wiki/HTML">HTML</a> and <a href="https://en.wikipedia.org/wiki/XML">XML</a> documents.</li>
+<li>Supports various parsers, such as Python&#39;s built-in <strong><code>[html.parser](https://docs.python.org/3/library/html.parser.html)</code></strong>, <strong><code>[lxml](https://lxml.de/)</code></strong>, and <strong><code>[html5lib](https://pypi.org/project/html5lib/)</code> :</strong>
+
+<ul>
+<li><a href="https://docs.python.org/3/library/html.parser.html">https://docs.python.org/3/library/html.parser.html</a></li>
+<li><a href="https://lxml.de/">https://lxml.de/</a></li>
+<li><a href="https://pypi.org/project/html5lib/">https://pypi.org/project/html5lib/</a></li>
+</ul></li>
+</ul>
+
+<p>In this example, We&#39;ll scrape the titles and URLs of the top repositories listed on the GitHub Trending page (<a href="https://github.com/trending">https://github.com/trending</a>) using BeautifulSoup4.</p>
+
+<div><pre class="line-numbers"><code class="language-python">import requests
+from bs4 import BeautifulSoup
+
+url = &#39;https://github.com/trending&#39;
+response = requests.get(url)
+soup = BeautifulSoup(response.content, &#39;html.parser&#39;)
+
+repositories = soup.find_all(&#39;h1&#39;, class_=&#39;h3 lh-condensed&#39;)
+
+assert isinstance(repositories, list)
+assert len(repositories) &gt; 1
+
+for repo in repositories:
+    title_element = repo.find(&#39;a&#39;)
+    
+    if title_element:
+        title = title_element[&#39;href&#39;].strip(&#39;/&#39;)
+        link = f&#39;https://github.com{title_element[&quot;href&quot;]}&#39;
+
+        print(f&#39;Title: {title}\nURL: {link}\n&#39;)</code></pre></div>
+
+<p>This script performs the following steps:</p>
+
+<ol>
+<li>Sends an HTTP request to the Trending section of the GitHub website.</li>
+<li>Parses the HTML content using BeautifulSoup4.</li>
+<li>Locates the article elements and extracts the title and URL for each article.</li>
+</ol>
+
+<p><strong>Note that web pages are subject to change</strong>, so the class names and structure of the HTML may change in the future. You should <em>always</em> inspect the HTML source of a web page to identify the appropriate selectors for the content you want to extract.</p>
+
+<h2 id="toc_11">Selenium</h2>
+
+<p><a href="https://selenium-python.readthedocs.io/">Selenium</a> is a web testing library that automates browser actions, allowing you to interact with web pages programmatically. In the context of web scraping, Selenium is useful for websites that rely on JavaScript to load or display content, as it can interact with the JavaScript code and retrieve dynamically loaded content. While Selenium is more powerful than BeautifulSoup in handling JavaScript-heavy websites, it is generally slower and consumes more resources because it needs to control an actual web browser — which is done through the appropriate <a href="https://selenium-python.readthedocs.io/installation.html#drivers">driver</a>.</p>
+
+<p>Key features:</p>
+
+<ul>
+<li>Automates browser actions, enabling interaction with web pages.</li>
+<li>Capable of handling websites with dynamic content loaded via JavaScript.</li>
+<li>Supports multiple browsers, such as Chrome, Firefox, and Edge, through web drivers:
+
+<ul>
+<li><a href="https://selenium-python.readthedocs.io/installation.html#drivers">https://selenium-python.readthedocs.io/installation.html#drivers</a></li>
+</ul></li>
+</ul>
+
+<p>In this example, we&#39;ll scrape the titles and URLs of the top trending repositories on GitHub (<strong><a href="https://github.com/trending">https://github.com/trending</a></strong>) using Selenium.</p>
+
+<p>Before running the script, make sure you have installed Selenium and downloaded the appropriate web driver for your browser (e.g., Chrome).</p>
+
+<div><pre class="line-numbers"><code class="language-python">from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+# Step 1: Set up the Selenium web driver
+driver = webdriver.Chrome(&#39;/path/to/chromedriver&#39;)
+driver.get(&#39;https://github.com/trending&#39;)
+
+# Step 2: Wait for the content to load
+wait = WebDriverWait(driver, 10)
+wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, &#39;h1.h3.lh-condensed&#39;)))
+
+# Step 3: Locate the desired elements and extract data
+# Locate the repository elements
+repositories = driver.find_elements_by_css_selector(&#39;.Box-row&#39;)
+
+# Iterate through the repository elements and extract the title and URL
+for repo in repositories:
+    title_element = repo.find_element_by_css_selector(&#39;h1.h3.lh-condensed&#39;)
+    link_element = title_element.find_element_by_tag_name(&#39;a&#39;)
+
+    if title_element and link_element:
+        title = title_element.text.strip()
+        link = link_element.get_attribute(&#39;href&#39;)
+
+        print(f&#39;Title: {title}\nURL: {link}\n&#39;)
+
+# Step 4: Close the web driver
+driver.quit()</code></pre></div>
+
+<p>This script performs the following steps:</p>
+
+<ol>
+<li>Sets up the Selenium web driver and navigates to the GitHub trending page.</li>
+<li>Waits for the content to load using WebDriverWait and expected_conditions.</li>
+<li>Locates the repository elements and extracts the title and URL for each repository.</li>
+<li>Closes the web driver.</li>
+</ol>
+
+<p>Again, <strong>note that web pages are subject to change</strong>, so the CSS selectors and structure of the HTML may change in the future. </p>
+
+<h2 id="toc_12">Scrapy</h2>
+
+<p>We&#39;ll scrape the titles and URLs of the top trending repositories on GitHub (<strong><a href="https://github.com/trending">https://github.com/trending</a></strong>), now using Scrapy.</p>
+
+<p>Different from the other examples with BeautifulSoup and Selenium, with Scrapy we operate a bit different. The code structure is different — where we define an <em>spider</em> object — and we run it from the command line.</p>
+
+<ol>
+<li><p>Create a Scrapy project</p>
+
+<div><pre class="line-numbers"><code class="language-bash">$ scrapy startproject github_scraper
+$ cd github_scraper</code></pre></div></li>
+<li><p>Create the following <em>spider</em> module in <code>github_scraper/github_scraper/spiders/github_spider.py</code></p>
+
+<div><pre class="line-numbers"><code class="language-python">import scrapy
+
+class GithubSpider(scrapy.Spider):
+    name = &#39;github_trending&#39;
+    start_urls = [&#39;https://github.com/trending&#39;]
+
+    def parse(self, response):
+        repositories = response.css(&#39;h1.h3.lh-condensed&#39;)
+        for repo in repositories:
+            title_element = repo.css(&#39;a::attr(href)&#39;)
+            title = title_element.get().strip(&#39;/&#39;)
+            link = f&#39;https://github.com{title_element.get()}&#39;
+
+            yield {&#39;title&#39;: title, &#39;url&#39;: link}</code></pre></div></li>
+<li><p>Run the <em>spider</em> and save the output in a JSON file</p>
+
+<div><pre class="line-numbers"><code class="language-bash">$ scrapy crawl github_trending -o output.json</code></pre></div></li>
+</ol>
+
+<p>This Scrapy spider performs the following steps:</p>
+
+<ol>
+<li>Sends the HTTP request (to GitHub Trending page).</li>
+<li>Parses the HTML content using Scrapy&#39;s built-in CSS selectors.</li>
+<li>Locates the article elements and extracts the title and URL for each article.</li>
+</ol>
+
+<h2 id="toc_13">Further resources</h2>
+
+<ul>
+<li>“A Practical Introduction to Web Scraping in Python”, RealPython: <a href="https://realpython.com/python-web-scraping-practical-introduction/">https://realpython.com/python-web-scraping-practical-introduction/</a></li>
+<li>“Beautiful-Soup: Build a Web Scraper With Python”, RealPython: <a href="https://realpython.com/beautiful-soup-web-scraper-python/">https://realpython.com/beautiful-soup-web-scraper-python/</a></li>
+<li>“Python Web Scraping Tutorials”, RealPython: <a href="https://realpython.com/tutorials/web-scraping/">https://realpython.com/tutorials/web-scraping/</a></li>
+<li>“Web Scraping With Beautiful Soup and Python”, RealPython: <a href="https://realpython.com/courses/web-scraping-beautiful-soup/">https://realpython.com/courses/web-scraping-beautiful-soup/</a></li>
+<li>“Web Scraping with Scrapy and MongoDB”, RealPython: <a href="https://realpython.com/web-scraping-with-scrapy-and-mongodb/">https://realpython.com/web-scraping-with-scrapy-and-mongodb/</a></li>
+<li>“Web Scraping and Crawling with Scrapy and MongoDB”, RealPython: <a href="https://realpython.com/web-scraping-and-crawling-with-scrapy-and-mongodb/">https://realpython.com/web-scraping-and-crawling-with-scrapy-and-mongodb/</a></li>
+</ul>
+
+
+
+<script type="text/javascript">
+var _self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{},Prism=function(){var e=/\blang(?:uage)?-(\w+)\b/i,t=0,n=_self.Prism={util:{encode:function(e){return e instanceof a?new a(e.type,n.util.encode(e.content),e.alias):"Array"===n.util.type(e)?e.map(n.util.encode):e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},objId:function(e){return e.__id||Object.defineProperty(e,"__id",{value:++t}),e.__id},clone:function(e){var t=n.util.type(e);switch(t){case"Object":var a={};for(var r in e)e.hasOwnProperty(r)&&(a[r]=n.util.clone(e[r]));return a;case"Array":return e.map&&e.map(function(e){return n.util.clone(e)})}return e}},languages:{extend:function(e,t){var a=n.util.clone(n.languages[e]);for(var r in t)a[r]=t[r];return a},insertBefore:function(e,t,a,r){r=r||n.languages;var l=r[e];if(2==arguments.length){a=arguments[1];for(var i in a)a.hasOwnProperty(i)&&(l[i]=a[i]);return l}var o={};for(var s in l)if(l.hasOwnProperty(s)){if(s==t)for(var i in a)a.hasOwnProperty(i)&&(o[i]=a[i]);o[s]=l[s]}return n.languages.DFS(n.languages,function(t,n){n===r[e]&&t!=e&&(this[t]=o)}),r[e]=o},DFS:function(e,t,a,r){r=r||{};for(var l in e)e.hasOwnProperty(l)&&(t.call(e,l,e[l],a||l),"Object"!==n.util.type(e[l])||r[n.util.objId(e[l])]?"Array"!==n.util.type(e[l])||r[n.util.objId(e[l])]||(r[n.util.objId(e[l])]=!0,n.languages.DFS(e[l],t,l,r)):(r[n.util.objId(e[l])]=!0,n.languages.DFS(e[l],t,null,r)))}},plugins:{},highlightAll:function(e,t){var a={callback:t,selector:'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'};n.hooks.run("before-highlightall",a);for(var r,l=a.elements||document.querySelectorAll(a.selector),i=0;r=l[i++];)n.highlightElement(r,e===!0,a.callback)},highlightElement:function(t,a,r){for(var l,i,o=t;o&&!e.test(o.className);)o=o.parentNode;o&&(l=(o.className.match(e)||[,""])[1],i=n.languages[l]),t.className=t.className.replace(e,"").replace(/\s+/g," ")+" language-"+l,o=t.parentNode,/pre/i.test(o.nodeName)&&(o.className=o.className.replace(e,"").replace(/\s+/g," ")+" language-"+l);var s=t.textContent,u={element:t,language:l,grammar:i,code:s};if(!s||!i)return n.hooks.run("complete",u),void 0;if(n.hooks.run("before-highlight",u),a&&_self.Worker){var c=new Worker(n.filename);c.onmessage=function(e){u.highlightedCode=e.data,n.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(u.element),n.hooks.run("after-highlight",u),n.hooks.run("complete",u)},c.postMessage(JSON.stringify({language:u.language,code:u.code,immediateClose:!0}))}else u.highlightedCode=n.highlight(u.code,u.grammar,u.language),n.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(t),n.hooks.run("after-highlight",u),n.hooks.run("complete",u)},highlight:function(e,t,r){var l=n.tokenize(e,t);return a.stringify(n.util.encode(l),r)},tokenize:function(e,t){var a=n.Token,r=[e],l=t.rest;if(l){for(var i in l)t[i]=l[i];delete t.rest}e:for(var i in t)if(t.hasOwnProperty(i)&&t[i]){var o=t[i];o="Array"===n.util.type(o)?o:[o];for(var s=0;s<o.length;++s){var u=o[s],c=u.inside,g=!!u.lookbehind,h=!!u.greedy,f=0,d=u.alias;u=u.pattern||u;for(var p=0;p<r.length;p++){var m=r[p];if(r.length>e.length)break e;if(!(m instanceof a)){u.lastIndex=0;var y=u.exec(m),v=1;if(!y&&h&&p!=r.length-1){var b=r[p+1].matchedStr||r[p+1],k=m+b;if(p<r.length-2&&(k+=r[p+2].matchedStr||r[p+2]),u.lastIndex=0,y=u.exec(k),!y)continue;var w=y.index+(g?y[1].length:0);if(w>=m.length)continue;var _=y.index+y[0].length,P=m.length+b.length;if(v=3,P>=_){if(r[p+1].greedy)continue;v=2,k=k.slice(0,P)}m=k}if(y){g&&(f=y[1].length);var w=y.index+f,y=y[0].slice(f),_=w+y.length,S=m.slice(0,w),O=m.slice(_),j=[p,v];S&&j.push(S);var A=new a(i,c?n.tokenize(y,c):y,d,y,h);j.push(A),O&&j.push(O),Array.prototype.splice.apply(r,j)}}}}}return r},hooks:{all:{},add:function(e,t){var a=n.hooks.all;a[e]=a[e]||[],a[e].push(t)},run:function(e,t){var a=n.hooks.all[e];if(a&&a.length)for(var r,l=0;r=a[l++];)r(t)}}},a=n.Token=function(e,t,n,a,r){this.type=e,this.content=t,this.alias=n,this.matchedStr=a||null,this.greedy=!!r};if(a.stringify=function(e,t,r){if("string"==typeof e)return e;if("Array"===n.util.type(e))return e.map(function(n){return a.stringify(n,t,e)}).join("");var l={type:e.type,content:a.stringify(e.content,t,r),tag:"span",classes:["token",e.type],attributes:{},language:t,parent:r};if("comment"==l.type&&(l.attributes.spellcheck="true"),e.alias){var i="Array"===n.util.type(e.alias)?e.alias:[e.alias];Array.prototype.push.apply(l.classes,i)}n.hooks.run("wrap",l);var o="";for(var s in l.attributes)o+=(o?" ":"")+s+'="'+(l.attributes[s]||"")+'"';return"<"+l.tag+' class="'+l.classes.join(" ")+'" '+o+">"+l.content+"</"+l.tag+">"},!_self.document)return _self.addEventListener?(_self.addEventListener("message",function(e){var t=JSON.parse(e.data),a=t.language,r=t.code,l=t.immediateClose;_self.postMessage(n.highlight(r,n.languages[a],a)),l&&_self.close()},!1),_self.Prism):_self.Prism;var r=document.currentScript||[].slice.call(document.getElementsByTagName("script")).pop();return r&&(n.filename=r.src,document.addEventListener&&!r.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",n.highlightAll)),_self.Prism}();"undefined"!=typeof module&&module.exports&&(module.exports=Prism),"undefined"!=typeof global&&(global.Prism=Prism);
+</script>
+
+<script type="text/javascript">
+!function(e){var t={variable:[{pattern:/\$?\(\([\w\W]+?\)\)/,inside:{variable:[{pattern:/(^\$\(\([\w\W]+)\)\)/,lookbehind:!0},/^\$\(\(/],number:/\b-?(?:0x[\dA-Fa-f]+|\d*\.?\d+(?:[Ee]-?\d+)?)\b/,operator:/--?|-=|\+\+?|\+=|!=?|~|\*\*?|\*=|\/=?|%=?|<<=?|>>=?|<=?|>=?|==?|&&?|&=|\^=?|\|\|?|\|=|\?|:/,punctuation:/\(\(?|\)\)?|,|;/}},{pattern:/\$\([^)]+\)|`[^`]+`/,inside:{variable:/^\$\(|^`|\)$|`$/}},/\$(?:[a-z0-9_#\?\*!@]+|\{[^}]+\})/i]};e.languages.bash={shebang:{pattern:/^#!\s*\/bin\/bash|^#!\s*\/bin\/sh/,alias:"important"},comment:{pattern:/(^|[^"{\\])#.*/,lookbehind:!0},string:[{pattern:/((?:^|[^<])<<\s*)(?:"|')?(\w+?)(?:"|')?\s*\r?\n(?:[\s\S])*?\r?\n\2/g,lookbehind:!0,inside:t},{pattern:/(["'])(?:\\\\|\\?[^\\])*?\1/g,inside:t}],variable:t.variable,"function":{pattern:/(^|\s|;|\||&)(?:alias|apropos|apt-get|aptitude|aspell|awk|basename|bash|bc|bg|builtin|bzip2|cal|cat|cd|cfdisk|chgrp|chmod|chown|chroot|chkconfig|cksum|clear|cmp|comm|command|cp|cron|crontab|csplit|cut|date|dc|dd|ddrescue|df|diff|diff3|dig|dir|dircolors|dirname|dirs|dmesg|du|egrep|eject|enable|env|ethtool|eval|exec|expand|expect|export|expr|fdformat|fdisk|fg|fgrep|file|find|fmt|fold|format|free|fsck|ftp|fuser|gawk|getopts|git|grep|groupadd|groupdel|groupmod|groups|gzip|hash|head|help|hg|history|hostname|htop|iconv|id|ifconfig|ifdown|ifup|import|install|jobs|join|kill|killall|less|link|ln|locate|logname|logout|look|lpc|lpr|lprint|lprintd|lprintq|lprm|ls|lsof|make|man|mkdir|mkfifo|mkisofs|mknod|more|most|mount|mtools|mtr|mv|mmv|nano|netstat|nice|nl|nohup|notify-send|nslookup|open|op|passwd|paste|pathchk|ping|pkill|popd|pr|printcap|printenv|printf|ps|pushd|pv|pwd|quota|quotacheck|quotactl|ram|rar|rcp|read|readarray|readonly|reboot|rename|renice|remsync|rev|rm|rmdir|rsync|screen|scp|sdiff|sed|seq|service|sftp|shift|shopt|shutdown|sleep|slocate|sort|source|split|ssh|stat|strace|su|sudo|sum|suspend|sync|tail|tar|tee|test|time|timeout|times|touch|top|traceroute|trap|tr|tsort|tty|type|ulimit|umask|umount|unalias|uname|unexpand|uniq|units|unrar|unshar|uptime|useradd|userdel|usermod|users|uuencode|uudecode|v|vdir|vi|vmstat|wait|watch|wc|wget|whereis|which|who|whoami|write|xargs|xdg-open|yes|zip)(?=$|\s|;|\||&)/,lookbehind:!0},keyword:{pattern:/(^|\s|;|\||&)(?:let|:|\.|if|then|else|elif|fi|for|break|continue|while|in|case|function|select|do|done|until|echo|exit|return|set|declare)(?=$|\s|;|\||&)/,lookbehind:!0},"boolean":{pattern:/(^|\s|;|\||&)(?:true|false)(?=$|\s|;|\||&)/,lookbehind:!0},operator:/&&?|\|\|?|==?|!=?|<<<?|>>|<=?|>=?|=~/,punctuation:/\$?\(\(?|\)\)?|\.\.|[{}[\];]/};var a=t.variable[1].inside;a["function"]=e.languages.bash["function"],a.keyword=e.languages.bash.keyword,a.boolean=e.languages.bash.boolean,a.operator=e.languages.bash.operator,a.punctuation=e.languages.bash.punctuation}(Prism);
+</script>
+
+<script type="text/javascript">
+Prism.languages.python={"triple-quoted-string":{pattern:/"""[\s\S]+?"""|'''[\s\S]+?'''/,alias:"string"},comment:{pattern:/(^|[^\\])#.*/,lookbehind:!0},string:/("|')(?:\\?.)*?\1/,"function":{pattern:/((?:^|\s)def[ \t]+)[a-zA-Z_][a-zA-Z0-9_]*(?=\()/g,lookbehind:!0},"class-name":{pattern:/(\bclass\s+)[a-z0-9_]+/i,lookbehind:!0},keyword:/\b(?:as|assert|async|await|break|class|continue|def|del|elif|else|except|exec|finally|for|from|global|if|import|in|is|lambda|pass|print|raise|return|try|while|with|yield)\b/,"boolean":/\b(?:True|False)\b/,number:/\b-?(?:0[bo])?(?:(?:\d|0x[\da-f])[\da-f]*\.?\d*|\.\d+)(?:e[+-]?\d+)?j?\b/i,operator:/[-+%=]=?|!=|\*\*?=?|\/\/?=?|<[<=>]?|>[=>]?|[&|^~]|\b(?:or|and|not)\b/,punctuation:/[{}[\];(),.:]/};
+</script>
+
+<script type="text/javascript">
+Prism.languages.clike={comment:[{pattern:/(^|[^\\])\/\*[\w\W]*?\*\//,lookbehind:!0},{pattern:/(^|[^\\:])\/\/.*/,lookbehind:!0}],string:{pattern:/(["'])(\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,greedy:!0},"class-name":{pattern:/((?:\b(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/i,lookbehind:!0,inside:{punctuation:/(\.|\\)/}},keyword:/\b(if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,"boolean":/\b(true|false)\b/,"function":/[a-z0-9_]+(?=\()/i,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)\b/i,operator:/--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&?|\|\|?|\?|\*|\/|~|\^|%/,punctuation:/[{}[\];(),.:]/};
+</script>
+
+<script type="text/javascript">
+Prism.languages.javascript=Prism.languages.extend("clike",{keyword:/\b(as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|var|void|while|with|yield)\b/,number:/\b-?(0x[\dA-Fa-f]+|0b[01]+|0o[0-7]+|\d*\.?\d+([Ee][+-]?\d+)?|NaN|Infinity)\b/,"function":/[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*(?=\()/i}),Prism.languages.insertBefore("javascript","keyword",{regex:{pattern:/(^|[^\/])\/(?!\/)(\[.+?]|\\.|[^\/\\\r\n])+\/[gimyu]{0,5}(?=\s*($|[\r\n,.;})]))/,lookbehind:!0,greedy:!0}}),Prism.languages.insertBefore("javascript","class-name",{"template-string":{pattern:/`(?:\\\\|\\?[^\\])*?`/,greedy:!0,inside:{interpolation:{pattern:/\$\{[^}]+\}/,inside:{"interpolation-punctuation":{pattern:/^\$\{|\}$/,alias:"punctuation"},rest:Prism.languages.javascript}},string:/[\s\S]+/}}}),Prism.languages.markup&&Prism.languages.insertBefore("markup","tag",{script:{pattern:/(<script[\w\W]*?>)[\w\W]*?(?=<\/script>)/i,lookbehind:!0,inside:Prism.languages.javascript,alias:"language-javascript"}}),Prism.languages.js=Prism.languages.javascript;
+</script>
+
+<script type="text/javascript">
+Prism.languages.markup={comment:/<!--[\w\W]*?-->/,prolog:/<\?[\w\W]+?\?>/,doctype:/<!DOCTYPE[\w\W]+?>/,cdata:/<!\[CDATA\[[\w\W]*?]]>/i,tag:{pattern:/<\/?(?!\d)[^\s>\/=.$<]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\\1|\\?(?!\1)[\w\W])*\1|[^\s'">=]+))?)*\s*\/?>/i,inside:{tag:{pattern:/^<\/?[^\s>\/]+/i,inside:{punctuation:/^<\/?/,namespace:/^[^\s>\/:]+:/}},"attr-value":{pattern:/=(?:('|")[\w\W]*?(\1)|[^\s>]+)/i,inside:{punctuation:/[=>"']/}},punctuation:/\/?>/,"attr-name":{pattern:/[^\s>\/]+/,inside:{namespace:/^[^\s>\/:]+:/}}}},entity:/&#?[\da-z]{1,8};/i},Prism.hooks.add("wrap",function(a){"entity"===a.type&&(a.attributes.title=a.content.replace(/&amp;/,"&"))}),Prism.languages.xml=Prism.languages.markup,Prism.languages.html=Prism.languages.markup,Prism.languages.mathml=Prism.languages.markup,Prism.languages.svg=Prism.languages.markup;
+</script>
+
+<script type="text/javascript">
+!function(a){var e=a.util.clone(a.languages.javascript);a.languages.jsx=a.languages.extend("markup",e),a.languages.jsx.tag.pattern=/<\/?[\w\.:-]+\s*(?:\s+[\w\.:-]+(?:=(?:("|')(\\?[\w\W])*?\1|[^\s'">=]+|(\{[\w\W]*?\})))?\s*)*\/?>/i,a.languages.jsx.tag.inside["attr-value"].pattern=/=[^\{](?:('|")[\w\W]*?(\1)|[^\s>]+)/i;var s=a.util.clone(a.languages.jsx);delete s.punctuation,s=a.languages.insertBefore("jsx","operator",{punctuation:/=(?={)|[{}[\];(),.:]/},{jsx:s}),a.languages.insertBefore("inside","attr-value",{script:{pattern:/=(\{(?:\{[^}]*\}|[^}])+\})/i,inside:s,alias:"language-javascript"}},a.languages.jsx.tag)}(Prism);
+</script>
+
+<script type="text/javascript">
+!function(){"undefined"!=typeof self&&self.Prism&&self.document&&Prism.hooks.add("complete",function(e){if(e.code){var t=e.element.parentNode,s=/\s*\bline-numbers\b\s*/;if(t&&/pre/i.test(t.nodeName)&&(s.test(t.className)||s.test(e.element.className))&&!e.element.querySelector(".line-numbers-rows")){s.test(e.element.className)&&(e.element.className=e.element.className.replace(s,"")),s.test(t.className)||(t.className+=" line-numbers");var n,a=e.code.match(/\n(?!$)/g),l=a?a.length+1:1,m=new Array(l+1);m=m.join("<span></span>"),n=document.createElement("span"),n.className="line-numbers-rows",n.innerHTML=m,t.hasAttribute("data-start")&&(t.style.counterReset="linenumber "+(parseInt(t.getAttribute("data-start"),10)-1)),e.element.appendChild(n)}}})}();
+</script>
+
+<script type="text/javascript">
+!function(){if("undefined"!=typeof self&&self.Prism&&self.document){var e={html:"HTML",xml:"XML",svg:"SVG",mathml:"MathML",css:"CSS",clike:"C-like",javascript:"JavaScript",abap:"ABAP",actionscript:"ActionScript",apacheconf:"Apache Configuration",apl:"APL",applescript:"AppleScript",asciidoc:"AsciiDoc",aspnet:"ASP.NET (C#)",autoit:"AutoIt",autohotkey:"AutoHotkey",basic:"BASIC",csharp:"C#",cpp:"C++",coffeescript:"CoffeeScript","css-extras":"CSS Extras",fsharp:"F#",glsl:"GLSL",http:"HTTP",inform7:"Inform 7",json:"JSON",latex:"LaTeX",lolcode:"LOLCODE",matlab:"MATLAB",mel:"MEL",nasm:"NASM",nginx:"nginx",nsis:"NSIS",objectivec:"Objective-C",ocaml:"OCaml",parigp:"PARI/GP",php:"PHP","php-extras":"PHP Extras",powershell:"PowerShell",jsx:"React JSX",rest:"reST (reStructuredText)",sas:"SAS",sass:"Sass (Sass)",scss:"Sass (Scss)",sql:"SQL",typescript:"TypeScript",vhdl:"VHDL",vim:"vim",wiki:"Wiki markup",yaml:"YAML"};Prism.hooks.add("before-highlight",function(s){var a=s.element.parentNode;if(a&&/pre/i.test(a.nodeName)){var t,i,r=a.getAttribute("data-language")||e[s.language]||s.language.substring(0,1).toUpperCase()+s.language.substring(1),l=a.previousSibling;l&&/\s*\bprism-show-language\b\s*/.test(l.className)&&l.firstChild&&/\s*\bprism-show-language-label\b\s*/.test(l.firstChild.className)?i=l.firstChild:(t=document.createElement("div"),i=document.createElement("div"),i.className="prism-show-language-label",t.className="prism-show-language",t.appendChild(i),a.parentNode.insertBefore(t,a)),i.innerHTML=r}})}}();
+</script>
+
+
+</body>
+
+</html>
